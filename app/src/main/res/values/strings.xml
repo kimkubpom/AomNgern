@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AomNgern</string>
+    <string name="email_signup">Enter your email address</string>
+    <string name="password_signup">Enter your password</string>
+    <string name="name_signup">Enter your name</string>
+    <string name="phone_signup">Enter your phone number</string>
+    <string name="button_create">Create Account</string>
+</resources>
