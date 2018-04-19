@@ -43,4 +43,9 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+
+    // Navigation bar
+    compile 'com.android.support:appcompat-v7:27.1.1'
+    compile 'com.android.support:design:27.1.1'
+    compile 'com.android.support:support-v4:27.1.1'
 }
