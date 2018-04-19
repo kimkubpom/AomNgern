@@ -63,7 +63,8 @@ public class SignUpActivity extends AppCompatActivity {
 
         createAccButton.setEnabled(false);
 
-        progressDialog.setIndeterminate(true);
+        final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this);
+                //, R.style.AppTheme_Dark_Dialog);
         progressDialog.setMessage("Creating an account...");
         progressDialog.show();
 
@@ -127,7 +128,7 @@ public class SignUpActivity extends AppCompatActivity {
         phone = phoneInput.getText().toString();
 
         // Check email address by regex ...@....
-        if(email.isEmpty() || email.length() <3) {
+        if(email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailInput.setError("input a valid email address");
             valid = false;
         } else {
@@ -150,7 +151,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         // Check if it's only number
 
-        if (phone.isEmpty()) {
+        if (phone.isEmpty() || !android.util.Patterns.PHONE.matcher(phone).matches()) {
             phoneInput.setError("input only number");
             valid = false;
         } else {
