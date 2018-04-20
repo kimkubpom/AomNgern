@@ -31,6 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.name_signup) EditText nameInput;
     @BindView(R.id.phone_signup) EditText phoneInput;
     @BindView(R.id.create_account) Button createAccButton;
+    @BindView(R.id.profileButton) Button profileImgButton;
 
     public String email;
     public String password;
@@ -47,12 +48,12 @@ public class SignUpActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this, R.style.AppTheme);
 
-//        createAccButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                createAccount(v);
-//            }
-//        });
+        createAccButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createAccount(v);
+            }
+        });
     }
 
     public void createAccount(View view){

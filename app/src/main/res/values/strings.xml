@@ -5,4 +5,9 @@
     <string name="name_signup">Name</string>
     <string name="phone_signup">Phone number</string>
     <string name="button_create">Create Account</string>
+
+    // Navigation bar
+    <string name="item_1">Item 1</string>
+    <string name="item_2">Item 2</string>
+    <string name="item_3">Item 3</string>
 </resources>
