@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         DatabaseInitializer.populateAsync(AomNgernDatabase.getDatabase(this));
         Intent intent = new Intent(this, LogInActivity.class);

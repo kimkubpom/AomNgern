@@ -38,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.navigation);
 
@@ -48,13 +48,13 @@ public class HomeActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         Fragment selectedFragment = null;
                         switch (item.getItemId()) {
-                            case R.id.action_item1:
+                            case R.id.activity:
                                 selectedFragment = ItemOneFragment.newInstance();
                                 break;
-                            case R.id.action_item2:
+                            case R.id.add:
                                 selectedFragment = ItemTwoFragment.newInstance();
                                 break;
-                            case R.id.action_item3:
+                            case R.id.account:
                                 selectedFragment = ItemThreeFragment.newInstance();
                                 break;
                         }
@@ -71,7 +71,7 @@ public class HomeActivity extends AppCompatActivity {
         transaction.commit();
 
         //Used to select an item programmatically
-        bottomNavigationView.getMenu().getItem(2).setChecked(true);
+//        bottomNavigationView.getMenu().getItem(2).setChecked(true);
     }
 }
 
