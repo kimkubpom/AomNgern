@@ -7,8 +7,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 <<<<<<< HEAD
+<<<<<<< HEAD
     tools:context=".Activity.HomeActivity">
 =======
+=======
+>>>>>>> 4e30a0404e785dce1570a5bd95c5b24716116493
     android:background="#FFFDE8"
     tools:context="com.example.kimkubpom.aomngern.Activity.HomeActivity">
 >>>>>>> 8752fcb3431648fd998b43e3500d041e7dcbe3b1
@@ -20,7 +23,10 @@
         android:layout_above="@+id/navigation"
         android:animateLayoutChanges="true">
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4e30a0404e785dce1570a5bd95c5b24716116493
 =======
 >>>>>>> 4e30a0404e785dce1570a5bd95c5b24716116493
     </FrameLayout>
@@ -29,7 +35,10 @@
         android:id="@+id/navigation"
         android:layout_width="match_parent"
 <<<<<<< HEAD
+<<<<<<< HEAD
         android:layout_height="wrap_content"
+=======
+>>>>>>> 4e30a0404e785dce1570a5bd95c5b24716116493
 =======
 >>>>>>> 4e30a0404e785dce1570a5bd95c5b24716116493
         android:layout_alignParentBottom="true"
@@ -38,7 +47,11 @@
         app:itemTextColor="@color/white"
         app:menu="@menu/bottom_navigation_items"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
 </RelativeLayout>
+=======
+    </RelativeLayout>
+>>>>>>> 4e30a0404e785dce1570a5bd95c5b24716116493
 =======
     </RelativeLayout>
 >>>>>>> 4e30a0404e785dce1570a5bd95c5b24716116493
