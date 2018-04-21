@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFDE8"
     tools:context="com.example.kimkubpom.aomngern.Activity.LogInActivity">
 
     <EditText
@@ -18,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.376" />
+        app:layout_constraintVertical_bias="0.374" />
 
     <EditText
         android:id="@+id/password_input"
@@ -32,26 +33,30 @@
         app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.475" />
+        app:layout_constraintVertical_bias="0.524" />
 
     <Button
         android:id="@+id/log_in"
-        android:layout_width="322dp"
+        android:layout_width="315dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="#ff6f69"
         android:text="Log In"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.654" />
+        app:layout_constraintVertical_bias="0.704" />
 
     <Button
         android:id="@+id/sign_up"
         android:layout_width="315dp"
         android:layout_height="wrap_content"
-        android:text="SIgn Up"
+        android:text="Sign Up"
+        android:textColor="#ffffff"
+        android:backgroundTint="#ff6f69"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
@@ -59,7 +64,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.809" />
+        app:layout_constraintVertical_bias="0.855" />
 
     <ImageView
         android:id="@+id/AomNgernLogo"
