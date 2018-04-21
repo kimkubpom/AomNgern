@@ -36,7 +36,7 @@ public class DatabaseInitializer {
         db.userDao().deleteAll();
 
         // Add admin account
-        addUser(db, "admin@123", "1234", "admin", "0888888888");
+        addUser(db, "admin@123.com", "1234", "admin", "0888888888");
     }
 
     private static void addUser(final AomNgernDatabase db, final String email,
