@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,15 @@ import android.widget.Toast;
 import com.example.kimkubpom.aomngern.AomNgernDatabase;
 import com.example.kimkubpom.aomngern.Entities.User;
 import com.example.kimkubpom.aomngern.R;
+import com.mynameismidori.currencypicker.CurrencyPicker;
+import com.mynameismidori.currencypicker.CurrencyPickerListener;
+import com.mynameismidori.currencypicker.ExtendedCurrency;
+
+import org.angmarch.views.NiceSpinner;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,11 +41,27 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.name_signup) EditText nameInput;
     @BindView(R.id.phone_signup) EditText phoneInput;
     @BindView(R.id.create_account) Button createAccButton;
+    @BindView(R.id.profileButton) Button profileImgButton;
+    @BindView(R.id.nice_spinner) NiceSpinner currencyList;
 
     public String email;
     public String password;
     public String name;
     public String phone;
+    //public String currencyName;
+    public String currencyCode;
+    public String currencySymbol;
+    public String currency;
+
+    // Currency list
+    //List<ExtendedCurrency> currencies = ExtendedCurrency.getAllCurrenciesList(); //List of all currencies
+    ExtendedCurrency[] currencies = ExtendedCurrency.CURRENCIES; //Array of all currencies
+
+    //ExtendedCurrency currency = ExtendedCurrency.getCurrencyByName(currencyName); //Get currency by its name
+
+
+    //String name = currency.getName();
+    //String code = currency.getCode();
 
     public ProgressDialog progressDialog;
 
@@ -45,17 +71,33 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
 
+
+        currencyList.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                CurrencyPicker picker = CurrencyPicker.newInstance("Select Currency");  // dialog title
+                picker.setListener(new CurrencyPickerListener() {
+                    @Override
+                    public void onSelectCurrency(String name, String code, String symbol, int flagDrawableResID) {
+                        currencyCode = code;
+                        currencySymbol = symbol;
+                    }
+                });
+                picker.show(getSupportFragmentManager(), "CURRENCY_PICKER");
+            }
+        });
+
         progressDialog = new ProgressDialog(this, R.style.AppTheme);
 
-//        createAccButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                createAccount(v);
-//            }
-//        });
+        createAccButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createAccount();
+            }
+        });
     }
 
-    public void createAccount(View view){
+    public void createAccount(){
         if (!validate()) {
             onSignupFailed();
             return;
@@ -63,7 +105,8 @@ public class SignUpActivity extends AppCompatActivity {
 
         createAccButton.setEnabled(false);
 
-        progressDialog.setIndeterminate(true);
+        final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this);
+                //, R.style.AppTheme_Dark_Dialog);
         progressDialog.setMessage("Creating an account...");
         progressDialog.show();
 
@@ -125,9 +168,12 @@ public class SignUpActivity extends AppCompatActivity {
         password = passwordInput.getText().toString();
         name = nameInput.getText().toString();
         phone = phoneInput.getText().toString();
+        currencyCode = currencyList.getText().toString();
+
+        Log.d(" Print ja",currencyCode);
 
         // Check email address by regex ...@....
-        if(email.isEmpty() || email.length() <3) {
+        if(email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailInput.setError("input a valid email address");
             valid = false;
         } else {
@@ -150,7 +196,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         // Check if it's only number
 
-        if (phone.isEmpty()) {
+        if (phone.isEmpty() || !android.util.Patterns.PHONE.matcher(phone).matches()) {
             phoneInput.setError("input only number");
             valid = false;
         } else {

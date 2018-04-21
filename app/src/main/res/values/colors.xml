@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+<<<<<<< HEAD
 
     <color name="colorBgNavigation">#ff6f69</color>
     <color name="white">#FFFFFF</color>
@@ -11,5 +12,9 @@
 
 
 
+=======
+    <color name="colorBgNavigation">#ff6f69</color>
+    <color name="grey">#808080</color>
+>>>>>>> 4e30a0404e785dce1570a5bd95c5b24716116493
 
 </resources>
