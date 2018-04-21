@@ -7,6 +7,7 @@
 
 package com.example.kimkubpom.aomngern.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -29,8 +30,7 @@ import butterknife.ButterKnife;
 
 
 public class LogInActivity extends AppCompatActivity {
-    @BindView(R.id.email_input)
-    EditText emailInput;
+    @BindView(R.id.email_input) EditText emailInput;
     @BindView(R.id.password_input) EditText passwordInput;
     @BindView(R.id.sign_up) Button signUpButton;
     @BindView(R.id.log_in) Button logInButton;
@@ -42,6 +42,7 @@ public class LogInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+       // ButterKnife.inject(this);
         ButterKnife.bind(this);
 
         logInButton.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +77,24 @@ public class LogInActivity extends AppCompatActivity {
 
         this.email = emailInput.getText().toString();
         this.password = passwordInput.getText().toString();
+
+        final ProgressDialog progressDialog = new ProgressDialog(LogInActivity.this);
+                //, R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Authenticating ...");
+        progressDialog.show();
+
+        // TODO: Implement your own authentication logic here.
+
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        // On complete call either onLoginSuccess or onLoginFailed
+                        onLoginSuccess();
+                        // onLoginFailed();
+                        progressDialog.dismiss();
+                    }
+                }, 3000);
 
         // Call thread to access DAO and check whether the email is taken or not
         new insertAsyncTask(this.email, this.password).execute();
@@ -128,7 +147,7 @@ public class LogInActivity extends AppCompatActivity {
 
 
         // Check email address by regex ...@....
-        if(email.isEmpty() || email.length() <3) {
+        if(email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailInput.setError("input a valid email address");
             valid = false;
         } else {

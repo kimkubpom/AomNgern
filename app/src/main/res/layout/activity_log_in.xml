@@ -9,7 +9,7 @@
 
     <EditText
         android:id="@+id/email_input"
-        android:layout_width="wrap_content"
+        android:layout_width="246dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/email_signup"
@@ -19,11 +19,15 @@
         app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+<<<<<<< HEAD
         app:layout_constraintVertical_bias="0.374" />
+=======
+        app:layout_constraintVertical_bias="0.376" />
+>>>>>>> b8a5273bbb16434bf8a27b9a6cba01004b92894a
 
     <EditText
         android:id="@+id/password_input"
-        android:layout_width="wrap_content"
+        android:layout_width="244dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/password_signup"
@@ -33,7 +37,11 @@
         app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+<<<<<<< HEAD
         app:layout_constraintVertical_bias="0.524" />
+=======
+        app:layout_constraintVertical_bias="0.475" />
+>>>>>>> b8a5273bbb16434bf8a27b9a6cba01004b92894a
 
     <Button
         android:id="@+id/log_in"
@@ -65,5 +73,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.855" />
+
+    <ImageView
+        android:id="@+id/AomNgernLogo"
+        android:layout_width="256dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/passwordIcon"
+        android:layout_width="39dp"
+        android:layout_height="26dp"
+        android:layout_marginRight="296dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.476"
+        app:srcCompat="@drawable/lock" />
+
+    <ImageView
+        android:id="@+id/userIcon"
+        android:layout_width="38dp"
+        android:layout_height="27dp"
+        android:layout_marginLeft="48dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:srcCompat="@drawable/user"
+        tools:layout_editor_absoluteY="182dp" />
 
 </android.support.constraint.ConstraintLayout>

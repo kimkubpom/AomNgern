@@ -31,6 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.name_signup) EditText nameInput;
     @BindView(R.id.phone_signup) EditText phoneInput;
     @BindView(R.id.create_account) Button createAccButton;
+    @BindView(R.id.profileButton) Button profileImgButton;
 
     public String email;
     public String password;
@@ -47,12 +48,12 @@ public class SignUpActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this, R.style.AppTheme);
 
-//        createAccButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                createAccount(v);
-//            }
-//        });
+        createAccButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createAccount(v);
+            }
+        });
     }
 
     public void createAccount(View view){
@@ -63,7 +64,8 @@ public class SignUpActivity extends AppCompatActivity {
 
         createAccButton.setEnabled(false);
 
-        progressDialog.setIndeterminate(true);
+        final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this);
+                //, R.style.AppTheme_Dark_Dialog);
         progressDialog.setMessage("Creating an account...");
         progressDialog.show();
 
@@ -127,7 +129,7 @@ public class SignUpActivity extends AppCompatActivity {
         phone = phoneInput.getText().toString();
 
         // Check email address by regex ...@....
-        if(email.isEmpty() || email.length() <3) {
+        if(email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailInput.setError("input a valid email address");
             valid = false;
         } else {
@@ -150,7 +152,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         // Check if it's only number
 
-        if (phone.isEmpty()) {
+        if (phone.isEmpty() || !android.util.Patterns.PHONE.matcher(phone).matches()) {
             phoneInput.setError("input only number");
             valid = false;
         } else {
