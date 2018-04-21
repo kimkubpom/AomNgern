@@ -72,20 +72,20 @@ public class SignUpActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
-        currencyList.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                CurrencyPicker picker = CurrencyPicker.newInstance("Select Currency");  // dialog title
-                picker.setListener(new CurrencyPickerListener() {
-                    @Override
-                    public void onSelectCurrency(String name, String code, String symbol, int flagDrawableResID) {
-                        currencyCode = code;
-                        currencySymbol = symbol;
-                    }
-                });
-                picker.show(getSupportFragmentManager(), "CURRENCY_PICKER");
-            }
-        });
+//        currencyList.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                CurrencyPicker picker = CurrencyPicker.newInstance("Select Currency");  // dialog title
+//                picker.setListener(new CurrencyPickerListener() {
+//                    @Override
+//                    public void onSelectCurrency(String name, String code, String symbol, int flagDrawableResID) {
+//                        currencyCode = code;
+//                        currencySymbol = symbol;
+//                    }
+//                });
+//                picker.show(getSupportFragmentManager(), "CURRENCY_PICKER");
+//            }
+//        });
 
         progressDialog = new ProgressDialog(this, R.style.AppTheme);
 
