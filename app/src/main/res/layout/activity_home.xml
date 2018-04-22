@@ -26,4 +26,4 @@
         app:itemIconTint="@color/nav_item_state_list"
         app:itemTextColor="@color/white"
         app:menu="@menu/bottom_navigation_items"/>
-    </RelativeLayout>
+</RelativeLayout>
