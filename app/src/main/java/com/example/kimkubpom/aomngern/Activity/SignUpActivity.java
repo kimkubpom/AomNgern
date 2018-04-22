@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.kimkubpom.aomngern.AomNgernDatabase;
@@ -41,14 +42,14 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.name_signup) EditText nameInput;
     @BindView(R.id.phone_signup) EditText phoneInput;
     @BindView(R.id.create_account) Button createAccButton;
-    @BindView(R.id.profileButton) Button profileImgButton;
+    @BindView(R.id.profileButton) ImageButton profileImgButton;
     @BindView(R.id.nice_spinner) NiceSpinner currencyList;
 
     public String email;
     public String password;
     public String name;
     public String phone;
-    //public String currencyName;
+    public String currencyName;
     public String currencyCode;
     public String currencySymbol;
     public String currency;
@@ -60,8 +61,8 @@ public class SignUpActivity extends AppCompatActivity {
     //ExtendedCurrency currency = ExtendedCurrency.getCurrencyByName(currencyName); //Get currency by its name
 
 
-    //String name = currency.getName();
-    //String code = currency.getCode();
+//    currencyName = currency.getName();
+//    currencyCode = currency.getCode();
 
     public ProgressDialog progressDialog;
 
@@ -70,22 +71,23 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
+        Log.d("Currency ja", currencies.toString());
 
-
-//        currencyList.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                CurrencyPicker picker = CurrencyPicker.newInstance("Select Currency");  // dialog title
-//                picker.setListener(new CurrencyPickerListener() {
-//                    @Override
-//                    public void onSelectCurrency(String name, String code, String symbol, int flagDrawableResID) {
-//                        currencyCode = code;
-//                        currencySymbol = symbol;
-//                    }
-//                });
-//                picker.show(getSupportFragmentManager(), "CURRENCY_PICKER");
-//            }
-//        });
+        currencyList.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                CurrencyPicker picker = CurrencyPicker.newInstance("Select Currency");  // dialog title
+                picker.setListener(new CurrencyPickerListener() {
+                    @Override
+                    public void onSelectCurrency(String name, String code, String symbol, int flagDrawableResID) {
+                        currencyCode = code;
+                        currencySymbol = symbol;
+                        //currencyList.getText().toString() = currencyCode;
+                    }
+                });
+                picker.show(getSupportFragmentManager(), "CURRENCY_PICKER");
+            }
+        });
 
         progressDialog = new ProgressDialog(this, R.style.AppTheme);
 
@@ -168,12 +170,10 @@ public class SignUpActivity extends AppCompatActivity {
         password = passwordInput.getText().toString();
         name = nameInput.getText().toString();
         phone = phoneInput.getText().toString();
-        currencyCode = currencyList.getText().toString();
-
-        Log.d(" Print ja",currencyCode);
+        //currencyCode = currencyList.getText().toString();
 
         // Check email address by regex ...@....
-        if(email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailInput.setError("input a valid email address");
             valid = false;
         } else {
@@ -202,6 +202,14 @@ public class SignUpActivity extends AppCompatActivity {
         } else {
             phoneInput.setError(null);
         }
+
+        // Check currency list spinner
+        //if ( currency.isEmpty()) {
+        // currencyList.setError("select default currency");
+        // valid = false;
+        // } else {
+        // currencyList.setError(null);
+        // }
 
         return valid;
     }
