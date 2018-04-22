@@ -74,4 +74,3 @@ public class HomeActivity extends AppCompatActivity {
 //        bottomNavigationView.getMenu().getItem(2).setChecked(true);
     }
 }
-
