@@ -6,13 +6,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
+
     android:background="#FFFDE8"
     tools:context="com.example.kimkubpom.aomngern.MainActivity">
-
-</android.support.constraint.ConstraintLayout>
-=======
-    tools:context=".Activity.MainActivity">
 
     <FrameLayout
         android:id="@+id/frame_layout"
@@ -33,4 +29,3 @@
         app:itemTextColor="@color/nav_item_state_list"
         app:menu="@menu/bottom_navigation_items"/>
 </RelativeLayout>
->>>>>>> b8a5273bbb16434bf8a27b9a6cba01004b92894a

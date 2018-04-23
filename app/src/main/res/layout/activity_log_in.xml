@@ -19,13 +19,8 @@
         app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-<<<<<<< HEAD
         app:layout_constraintVertical_bias="0.374" />
-=======
-        app:layout_constraintVertical_bias="0.376" />
->>>>>>> b8a5273bbb16434bf8a27b9a6cba01004b92894a
-
-    <EditText
+<EditText
         android:id="@+id/password_input"
         android:layout_width="244dp"
         android:layout_height="wrap_content"
@@ -37,11 +32,7 @@
         app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-<<<<<<< HEAD
-        app:layout_constraintVertical_bias="0.524" />
-=======
         app:layout_constraintVertical_bias="0.475" />
->>>>>>> b8a5273bbb16434bf8a27b9a6cba01004b92894a
 
     <Button
         android:id="@+id/log_in"
