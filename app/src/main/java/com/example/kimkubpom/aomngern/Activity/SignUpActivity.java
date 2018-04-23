@@ -49,20 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
     public String password;
     public String name;
     public String phone;
-    public String currencyName;
     public String currencyCode;
-    public String currencySymbol;
-    public String currency;
-
-    // Currency list
-    //List<ExtendedCurrency> currencies = ExtendedCurrency.getAllCurrenciesList(); //List of all currencies
-    ExtendedCurrency[] currencies = ExtendedCurrency.CURRENCIES; //Array of all currencies
-
-    //ExtendedCurrency currency = ExtendedCurrency.getCurrencyByName(currencyName); //Get currency by its name
-
-
-//    currencyName = currency.getName();
-//    currencyCode = currency.getCode();
 
     public ProgressDialog progressDialog;
 
@@ -71,7 +58,6 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
-        Log.d("Currency ja", currencies.toString());
 
         currencyList.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -81,12 +67,15 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onSelectCurrency(String name, String code, String symbol, int flagDrawableResID) {
                         currencyCode = code;
-                        currencySymbol = symbol;
-                        //currencyList.getText().toString() = currencyCode;
+                        // NiceSpinner attach data source
+                        currencyList.setText(currencyCode);
                     }
+
                 });
                 picker.show(getSupportFragmentManager(), "CURRENCY_PICKER");
+                //picker.dismiss();
             }
+
         });
 
         progressDialog = new ProgressDialog(this, R.style.AppTheme);
@@ -118,7 +107,7 @@ public class SignUpActivity extends AppCompatActivity {
         this.phone = phoneInput.getText().toString();
 
         // Call thread to access DAO and check whether the email is taken or not
-        new insertAsyncTask(this.email, this.password, this.name, this.phone).execute();
+        new insertAsyncTask(this.email, this.password, this.name, this.phone, this.currencyCode).execute();
 
     }
 
@@ -130,7 +119,7 @@ public class SignUpActivity extends AppCompatActivity {
         private String name;
         private String phone;
 
-        insertAsyncTask(String email, String password, String name, String phone) {
+        insertAsyncTask(String email, String password, String name, String phone, String currency) {
             this.email = email;
             this.password = password;
             this.name = name;
@@ -156,21 +145,19 @@ public class SignUpActivity extends AppCompatActivity {
             }
             else{
                 Toast.makeText(getBaseContext(), "Email already exist", Toast.LENGTH_LONG).show();
-                //can set some interval
                 createAccButton.setEnabled(true);
             }
         }
     }
 
     public boolean validate() {
-
+        // Check only email, password, name, phone, currency
         boolean valid = true;
 
         email = emailInput.getText().toString();
         password = passwordInput.getText().toString();
         name = nameInput.getText().toString();
         phone = phoneInput.getText().toString();
-        //currencyCode = currencyList.getText().toString();
 
         // Check email address by regex ...@....
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
@@ -204,13 +191,12 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         // Check currency list spinner
-        //if ( currency.isEmpty()) {
-        // currencyList.setError("select default currency");
-        // valid = false;
-        // } else {
-        // currencyList.setError(null);
-        // }
-
+        if ( currencyCode.isEmpty()) {
+            currencyList.setError("select default currency");
+            valid = false;
+        } else {
+            currencyList.setError(null);
+        }
         return valid;
     }
 
@@ -225,7 +211,7 @@ public class SignUpActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                User user = new User(email, password, name, phone);
+                User user = new User(email, password, name, phone, currencyCode);
                 AomNgernDatabase.getDatabase(getApplicationContext()).userDao().addUser(user);
             }
         }).start();
