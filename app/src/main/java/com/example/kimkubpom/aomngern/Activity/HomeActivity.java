@@ -29,9 +29,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.kimkubpom.aomngern.R;
-import com.truiton.bottomnavigation.ItemOneFragment;
-import com.truiton.bottomnavigation.ItemThreeFragment;
-import com.truiton.bottomnavigation.ItemTwoFragment;
+import com.truiton.bottomnavigation.AccountFragment;
+import com.truiton.bottomnavigation.ActivityFragment;
+import com.truiton.bottomnavigation.AddFragment;
+import com.truiton.bottomnavigation.ActivityFragment;
+import com.truiton.bottomnavigation.AccountFragment;
+import com.truiton.bottomnavigation.AddFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -49,13 +52,13 @@ public class HomeActivity extends AppCompatActivity {
                         Fragment selectedFragment = null;
                         switch (item.getItemId()) {
                             case R.id.activity:
-                                selectedFragment = ItemOneFragment.newInstance();
+                                selectedFragment = ActivityFragment.newInstance();
                                 break;
                             case R.id.add:
-                                selectedFragment = ItemTwoFragment.newInstance();
+                                selectedFragment = AddFragment.newInstance();
                                 break;
                             case R.id.account:
-                                selectedFragment = ItemThreeFragment.newInstance();
+                                selectedFragment = AccountFragment.newInstance();
                                 break;
                         }
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -67,7 +70,7 @@ public class HomeActivity extends AppCompatActivity {
 
         //Manually displaying the first fragment - one time only
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout, ItemOneFragment.newInstance());
+        transaction.replace(R.id.frame_layout, ActivityFragment.newInstance());
         transaction.commit();
 
         //Used to select an item programmatically

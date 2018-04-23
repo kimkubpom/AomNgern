@@ -14,4 +14,7 @@
     <color name="yellowApp">#ffcc5c</color>
     <color name="creamApp">#ffeead</color>
 
+    <color name="silver">#C0C0C0</color>
+    <color name="lavenderBlush">#fff0f5</color>
+
 </resources>
