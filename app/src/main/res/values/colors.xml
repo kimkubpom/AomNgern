@@ -12,7 +12,8 @@
     <color name="greenApp">#88d8b0</color>
     <color name="lightGreenApp">#96ceb4</color>
     <color name="yellowApp">#ffcc5c</color>
-    <color name="creamApp">#ffeead</color>
+    <color name="creamApp">#FFFDE8</color>
+    <color name="mild">#ffeead</color>
 
     <color name="silver">#C0C0C0</color>
     <color name="lavenderBlush">#fff0f5</color>

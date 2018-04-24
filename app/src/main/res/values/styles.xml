@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/yellowApp</item>
         <item name="colorPrimaryDark">@color/greenApp</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:colorBackground">#FFFDE8</item>
+        <item name="android:colorBackground">@color/creamApp</item>
     </style>
 
 </resources>

@@ -8,14 +8,19 @@
 package com.example.kimkubpom.aomngern.Activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -52,6 +57,7 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.phone_signup) EditText phoneInput;
     @BindView(R.id.create_account) Button createAccButton;
     @BindView(R.id.profileButton) ImageButton profileImgButton;
+    //@BindView(R.id.profileButton) FloatingActionButton profileImgButton;
     @BindView(R.id.nice_spinner) NiceSpinner currencyList;
     @BindView(R.id.profile_image) ImageView displayImg;
 
@@ -64,6 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
     public ProgressDialog progressDialog;
 
     public static final int GET_FROM_GALLERY = 1;
+    public static final int CAPTURE_FROM_CAMERA = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +139,29 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void uploadImg() {
+
+//        final CharSequence[] items = {"Camera", "Gallery", "Cancel"};
+//
+//        AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
+//        builder.setTitle("Add Image");
+//        builder.setItems(items, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                if(items[which].equals("Camera")){
+//                    Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+////        File file = getFile();
+////        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+//                    startActivityForResult(cameraIntent, CAPTURE_FROM_CAMERA);
+//                }
+//                else if(items[which].equals("Gallery")){
+//
+//                }
+//                else if(items[which].equals("Cancel")){
+//                    dialog.dismiss();
+//                }
+//            }
+//        });
+//        builder.show();
 
 //        Intent intent = new Intent();
 //        intent.setType("image/*");
@@ -295,6 +325,13 @@ public class SignUpActivity extends AppCompatActivity {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+        }
+
+        if(requestCode == CAPTURE_FROM_CAMERA && resultCode == Activity.RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            final Bitmap bmp = (Bitmap) bundle.get("data");
+            displayImg.setImageBitmap(bmp);
+
         }
     }
 }
