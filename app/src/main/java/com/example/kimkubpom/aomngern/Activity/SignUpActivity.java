@@ -14,6 +14,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -21,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.kimkubpom.aomngern.AomNgernDatabase;
@@ -32,6 +34,7 @@ import com.mynameismidori.currencypicker.ExtendedCurrency;
 
 import org.angmarch.views.NiceSpinner;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
@@ -50,6 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.create_account) Button createAccButton;
     @BindView(R.id.profileButton) ImageButton profileImgButton;
     @BindView(R.id.nice_spinner) NiceSpinner currencyList;
+    @BindView(R.id.profile_image) ImageView displayImg;
 
     public String email;
     public String password;
@@ -128,7 +132,24 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void uploadImg() {
-        startActivityForResult(new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI), GET_FROM_GALLERY);
+
+//        Intent intent = new Intent();
+//        intent.setType("image/*");
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        startActivityForResult(Intent.createChooser(intent, "Select Picture"),REQUEST_CODE);
+
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+
+        File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        String pictureDirectoryPath = pictureDirectory.getPath();
+
+        Uri data = Uri.parse(pictureDirectoryPath);
+
+        photoPickerIntent.setDataAndType(data, "image/*");
+
+        startActivityForResult(photoPickerIntent, GET_FROM_GALLERY);
+
+//        startActivityForResult(new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI), GET_FROM_GALLERY);
 
 
     }
@@ -241,7 +262,8 @@ public class SignUpActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                User user = new User(email, password, name, phone, currencyCode);
+//                User user = new User(email, password, name, phone, currencyCode);
+                User user = new User(email, password, name, phone);
                 AomNgernDatabase.getDatabase(getApplicationContext()).userDao().addUser(user);
             }
         }).start();
@@ -262,6 +284,7 @@ public class SignUpActivity extends AppCompatActivity {
         //Detects request codes
         if(requestCode==GET_FROM_GALLERY && resultCode == Activity.RESULT_OK) {
             Uri selectedImage = data.getData();
+            displayImg.setImageURI(selectedImage);
             Bitmap bitmap = null;
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
