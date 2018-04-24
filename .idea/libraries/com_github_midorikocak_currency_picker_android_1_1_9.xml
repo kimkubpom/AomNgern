@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="com.github.midorikocak:currency-picker-android-1.1.9">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/currency-picker-android-1.1.9.aar/78a762d3bb6a8a16426ab46fdb1b1fab/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/currency-picker-android-1.1.9.aar/78a762d3bb6a8a16426ab46fdb1b1fab/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/currency-picker-android-1.1.9.aar/3500c6e246f4f4acc87684e64e5e4dbd/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/currency-picker-android-1.1.9.aar/3500c6e246f4f4acc87684e64e5e4dbd/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
