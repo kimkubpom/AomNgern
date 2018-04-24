@@ -69,13 +69,15 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.639" />
+        app:layout_constraintVertical_bias="0.658" />
 
     <Button
         android:id="@+id/create_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_create"
+        android:backgroundTint="#ff6f69"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -117,9 +119,11 @@
         android:layout_height="30dp"
         android:layout_marginLeft="52dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/email_signup"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.316"
+        app:layout_constraintVertical_bias="0.322"
         app:srcCompat="@drawable/email" />
 
     <ImageView
@@ -131,7 +135,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.399"
+        app:layout_constraintVertical_bias="0.426"
         app:srcCompat="@drawable/lock" />
 
     <ImageView
@@ -139,11 +143,11 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintHorizontal_bias="0.146"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.532"
+        app:layout_constraintVertical_bias="0.538"
         app:srcCompat="@drawable/user" />
 
     <ImageView
@@ -151,11 +155,11 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.146"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.619"
+        app:layout_constraintVertical_bias="0.65"
         app:srcCompat="@drawable/phone" />
 
     <ImageView
@@ -167,7 +171,21 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.715"
+        app:layout_constraintVertical_bias="0.756"
         app:srcCompat="@drawable/money" />
+
+    <org.angmarch.views.NiceSpinner
+        android:id="@+id/nice_spinner"
+        android:layout_width="215dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:arrowTint="#ff6f69"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.822"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.779"
+        tools:text="Currency" />
 
 </android.support.constraint.ConstraintLayout>

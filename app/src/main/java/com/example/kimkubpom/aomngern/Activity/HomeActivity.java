@@ -29,16 +29,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.kimkubpom.aomngern.R;
-import com.truiton.bottomnavigation.ItemOneFragment;
-import com.truiton.bottomnavigation.ItemThreeFragment;
-import com.truiton.bottomnavigation.ItemTwoFragment;
+import com.truiton.bottomnavigation.AccountFragment;
+import com.truiton.bottomnavigation.ActivityFragment;
+import com.truiton.bottomnavigation.AddFragment;
+import com.truiton.bottomnavigation.ActivityFragment;
+import com.truiton.bottomnavigation.AccountFragment;
+import com.truiton.bottomnavigation.AddFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.navigation);
 
@@ -48,14 +51,14 @@ public class HomeActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         Fragment selectedFragment = null;
                         switch (item.getItemId()) {
-                            case R.id.action_item1:
-                                selectedFragment = ItemOneFragment.newInstance();
+                            case R.id.activity:
+                                selectedFragment = ActivityFragment.newInstance();
                                 break;
-                            case R.id.action_item2:
-                                selectedFragment = ItemTwoFragment.newInstance();
+                            case R.id.add:
+                                selectedFragment = AddFragment.newInstance();
                                 break;
-                            case R.id.action_item3:
-                                selectedFragment = ItemThreeFragment.newInstance();
+                            case R.id.account:
+                                selectedFragment = AccountFragment.newInstance();
                                 break;
                         }
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -67,11 +70,10 @@ public class HomeActivity extends AppCompatActivity {
 
         //Manually displaying the first fragment - one time only
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout, ItemOneFragment.newInstance());
+        transaction.replace(R.id.frame_layout, ActivityFragment.newInstance());
         transaction.commit();
 
         //Used to select an item programmatically
-        bottomNavigationView.getMenu().getItem(2).setChecked(true);
+//        bottomNavigationView.getMenu().getItem(2).setChecked(true);
     }
 }
-

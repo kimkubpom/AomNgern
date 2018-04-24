@@ -55,4 +55,14 @@ dependencies {
     // Image placeholder
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     compile 'de.hdodenhof:circleimageview:2.2.0'
+
+    // nice spinner
+    compile 'com.github.arcadefire:nice-spinner:1.3.1'
+
+    // currency picker
+    compile 'com.github.midorikocak:currency-picker-android:1.1.9'
+
+    // Fragment
+    compile 'com.android.support:support-fragment:27.1.1'
+
 }

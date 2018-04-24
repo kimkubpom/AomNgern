@@ -7,19 +7,36 @@
 
 package com.example.kimkubpom.aomngern.Activity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.kimkubpom.aomngern.AomNgernDatabase;
 import com.example.kimkubpom.aomngern.Entities.User;
 import com.example.kimkubpom.aomngern.R;
+import com.mynameismidori.currencypicker.CurrencyPicker;
+import com.mynameismidori.currencypicker.CurrencyPickerListener;
+import com.mynameismidori.currencypicker.ExtendedCurrency;
+
+import org.angmarch.views.NiceSpinner;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,14 +48,18 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.name_signup) EditText nameInput;
     @BindView(R.id.phone_signup) EditText phoneInput;
     @BindView(R.id.create_account) Button createAccButton;
-    @BindView(R.id.profileButton) Button profileImgButton;
+    @BindView(R.id.profileButton) ImageButton profileImgButton;
+    @BindView(R.id.nice_spinner) NiceSpinner currencyList;
 
     public String email;
     public String password;
     public String name;
     public String phone;
+    public String currencyCode;
 
     public ProgressDialog progressDialog;
+
+    public static final int GET_FROM_GALLERY = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,17 +67,43 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
 
+        currencyList.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                CurrencyPicker picker = CurrencyPicker.newInstance("Select Currency");  // dialog title
+                picker.setListener(new CurrencyPickerListener() {
+                    @Override
+                    public void onSelectCurrency(String name, String code, String symbol, int flagDrawableResID) {
+                        currencyCode = code;
+                        // NiceSpinner attach data source
+                        currencyList.setText(currencyCode);
+                    }
+
+                });
+                picker.show(getSupportFragmentManager(), "CURRENCY_PICKER");
+                //picker.dismiss();
+            }
+
+        });
+
         progressDialog = new ProgressDialog(this, R.style.AppTheme);
+
+        profileImgButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadImg();
+            }
+        });
 
         createAccButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createAccount(v);
+                createAccount();
             }
         });
     }
 
-    public void createAccount(View view){
+    public void createAccount(){
         if (!validate()) {
             onSignupFailed();
             return;
@@ -75,7 +122,14 @@ public class SignUpActivity extends AppCompatActivity {
         this.phone = phoneInput.getText().toString();
 
         // Call thread to access DAO and check whether the email is taken or not
+//        new insertAsyncTask(this.email, this.password, this.name, this.phone, this.currencyCode).execute();
         new insertAsyncTask(this.email, this.password, this.name, this.phone).execute();
+
+    }
+
+    public void uploadImg() {
+        startActivityForResult(new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI), GET_FROM_GALLERY);
+
 
     }
 
@@ -86,7 +140,15 @@ public class SignUpActivity extends AppCompatActivity {
         private String password;
         private String name;
         private String phone;
+        private String currency;
 
+//        insertAsyncTask(String email, String password, String name, String phone, String currency) {
+//            this.email = email;
+//            this.password = password;
+//            this.name = name;
+//            this.phone = phone;
+//            this.currency = currency;
+//        }
         insertAsyncTask(String email, String password, String name, String phone) {
             this.email = email;
             this.password = password;
@@ -113,14 +175,13 @@ public class SignUpActivity extends AppCompatActivity {
             }
             else{
                 Toast.makeText(getBaseContext(), "Email already exist", Toast.LENGTH_LONG).show();
-                //can set some interval
                 createAccButton.setEnabled(true);
             }
         }
     }
 
     public boolean validate() {
-
+        // Check only email, password, name, phone, currency
         boolean valid = true;
 
         email = emailInput.getText().toString();
@@ -129,7 +190,7 @@ public class SignUpActivity extends AppCompatActivity {
         phone = phoneInput.getText().toString();
 
         // Check email address by regex ...@....
-        if(email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailInput.setError("input a valid email address");
             valid = false;
         } else {
@@ -159,6 +220,13 @@ public class SignUpActivity extends AppCompatActivity {
             phoneInput.setError(null);
         }
 
+        // Check currency list spinner
+        if ( currencyCode.isEmpty()) {
+            currencyList.setError("select default currency");
+            valid = false;
+        } else {
+            currencyList.setError(null);
+        }
         return valid;
     }
 
@@ -173,7 +241,7 @@ public class SignUpActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                User user = new User(email, password, name, phone);
+                User user = new User(email, password, name, phone, currencyCode);
                 AomNgernDatabase.getDatabase(getApplicationContext()).userDao().addUser(user);
             }
         }).start();
@@ -184,5 +252,26 @@ public class SignUpActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
 
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //Detects request codes
+        if(requestCode==GET_FROM_GALLERY && resultCode == Activity.RESULT_OK) {
+            Uri selectedImage = data.getData();
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
     }
 }

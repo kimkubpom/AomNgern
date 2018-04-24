@@ -29,7 +29,7 @@ public class User {
         this.UserEmail = UserEmail;
         this.UserPhone = UserPhone;
 //        this.UserPhoto = Photo;
-//        this.UserCurrency = Currency;
+//        this.UserCurrency = UserCurrency;
     }
 
     //    @Ignore
@@ -40,7 +40,7 @@ public class User {
         this.UserEmail = UserEmail;
         this.UserPhone = UserPhone;
 //        this.UserPhoto = Photo;
-//        this.UserCurrency = Currency;
+//        this.UserCurrency = UserCurrency;
     }
 
     @NonNull
@@ -91,7 +91,7 @@ public class User {
 //    public void setUserCurrency(String userCurrency) {
 //        UserCurrency = userCurrency;
 //    }
-//
+
 //    public String getUserPhoto() {
 //        return UserPhoto;
 //    }
@@ -99,10 +99,7 @@ public class User {
 //    public void setUserPhoto(String userPhoto) {
 //        UserPhoto = userPhoto;
 //    }
-
     @NonNull
-
-
     @PrimaryKey
     @ColumnInfo(name = "UserID")
     private String UserID;
@@ -121,10 +118,8 @@ public class User {
 
 //    @ColumnInfo(name = "UserCurrency")
 //    private String UserCurrency;
-//
+
 //    @ColumnInfo(name = "UserPhoto")
 //    private String UserPhoto;
-
-
 
 }

@@ -3,11 +3,18 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
     <color name="white">#FFFFFF</color>
-    <color name="white_trans">#99FFFFFF</color>
+    <color name="colorBgNavigation">#ff6f69</color>
+    <color name="grey">#808080</color>
 
+    <color name="pinkApp">#ff6f69</color>
+    <color name="greenApp">#88d8b0</color>
+    <color name="lightGreenApp">#96ceb4</color>
+    <color name="yellowApp">#ffcc5c</color>
+    <color name="creamApp">#ffeead</color>
 
-
-
+    <color name="silver">#C0C0C0</color>
+    <color name="lavenderBlush">#fff0f5</color>
 
 </resources>
