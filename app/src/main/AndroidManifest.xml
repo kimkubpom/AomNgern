@@ -16,17 +16,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.SignUpActivity" />
+        <activity
+            android:name=".Activity.SignUpActivity"
+            android:label="Sign Up" />
         <activity android:name=".Activity.LogInActivity" />
-        <activity android:name=".Activity.HomeActivity" />
-        <activity android:name=".Activity.MenuActivity" />
-        <activity android:name=".Activity.AccActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity
+            android:name=".Activity.HomeActivity"
+            android:label="Home" />
+        <activity
+            android:name=".Activity.EditActivity"
+            android:label="Edit Profile" />
+        <activity
+            android:name=".Activity.ResetActivity"
+            android:label="Reset Password" />
+        <activity android:name=".Activity.AccountActivity"
+                    android:label="Account"/>
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".Activity.DeleteActivity"
+                    android:label="Accommodation"
+                    android:gravity="center"></activity>
     </application>
 
 </manifest>

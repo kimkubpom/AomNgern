@@ -1,9 +1,7 @@
-package com.example.kimkubpom.aomngern.Activity;
+package com.example.kimkubpom.aomngern;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import com.example.kimkubpom.aomngern.R;
 
 public class MenuActivity extends AppCompatActivity {
 

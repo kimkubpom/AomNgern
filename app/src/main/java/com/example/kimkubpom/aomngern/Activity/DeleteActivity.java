@@ -3,11 +3,13 @@ package com.example.kimkubpom.aomngern.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class AccActivity extends AppCompatActivity {
+import com.example.kimkubpom.aomngern.R;
+
+public class DeleteActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_acc);
+        setContentView(R.layout.activity_delete);
     }
 }
