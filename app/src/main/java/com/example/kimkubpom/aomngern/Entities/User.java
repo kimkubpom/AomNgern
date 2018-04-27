@@ -22,25 +22,25 @@ import java.util.UUID;
 public class User {
 
     @Ignore
-    public User(String UserEmail, String UserPassword, String UserName, String UserPhone) {
+    public User(String UserEmail, String UserPassword, String UserName, String UserPhone, String UserCurrency, String UserPhoto) {
         UserID = UUID.randomUUID().toString();
         this.UserName = UserName;
         this.UserPassword = UserPassword;
         this.UserEmail = UserEmail;
         this.UserPhone = UserPhone;
-//        this.UserPhoto = Photo;
-//        this.UserCurrency = UserCurrency;
+        this.UserPhoto = UserPhoto;
+        this.UserCurrency = UserCurrency;
     }
 
     //    @Ignore
-    public User(String UserID, String UserEmail, String UserPassword, String UserName, String UserPhone) {
+    public User(String UserID, String UserEmail, String UserPassword, String UserName, String UserPhone, String UserCurrency, String UserPhoto) {
         this.UserID = UserID;
         this.UserName = UserName;
         this.UserPassword = UserPassword;
         this.UserEmail = UserEmail;
         this.UserPhone = UserPhone;
-//        this.UserPhoto = Photo;
-//        this.UserCurrency = UserCurrency;
+        this.UserPhoto = UserPhoto;
+        this.UserCurrency = UserCurrency;
     }
 
     @NonNull
@@ -84,21 +84,21 @@ public class User {
         UserPhone = userPhone;
     }
 
-//    public String getUserCurrency() {
-//        return UserCurrency;
-//    }
-//
-//    public void setUserCurrency(String userCurrency) {
-//        UserCurrency = userCurrency;
-//    }
+    public String getUserCurrency() {
+        return UserCurrency;
+    }
 
-//    public String getUserPhoto() {
-//        return UserPhoto;
-//    }
-//
-//    public void setUserPhoto(String userPhoto) {
-//        UserPhoto = userPhoto;
-//    }
+    public void setUserCurrency(String userCurrency) {
+        UserCurrency = userCurrency;
+    }
+
+    public String getUserPhoto() {
+        return UserPhoto;
+    }
+
+    public void setUserPhoto(String userPhoto) {
+        UserPhoto = userPhoto;
+    }
     @NonNull
     @PrimaryKey
     @ColumnInfo(name = "UserID")
@@ -116,10 +116,10 @@ public class User {
     @ColumnInfo(name = "UserPhone")
     private String UserPhone;
 
-//    @ColumnInfo(name = "UserCurrency")
-//    private String UserCurrency;
+    @ColumnInfo(name = "UserCurrency")
+    private String UserCurrency;
 
-//    @ColumnInfo(name = "UserPhoto")
-//    private String UserPhoto;
+    @ColumnInfo(name = "UserPhoto")
+    private String UserPhoto;
 
 }

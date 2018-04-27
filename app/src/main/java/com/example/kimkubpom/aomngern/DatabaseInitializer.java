@@ -36,12 +36,12 @@ public class DatabaseInitializer {
         db.userDao().deleteAll();
 
         // Add admin account
-        addUser(db, "admin@123.com", "1234", "admin", "0888888888", "THB");
+        addUser(db, "admin@123.com", "1234", "admin", "0888888888", "THB", null);
     }
 
     private static void addUser(final AomNgernDatabase db, final String email,
-                                final String password, final String name, final String phone, final String currency) {
-        User user = new User(email, password, name, phone, currency);
+                                final String password, final String name, final String phone, final String currency, final String photo) {
+        User user = new User(email, password, name, phone, currency, photo);
         db.userDao().addUser(user);
     }
 
